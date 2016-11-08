@@ -39,14 +39,19 @@ public class SeleniumTest {
 	
 	public static void checkout(WebDriver driver) {
 		Actions action = new Actions(driver);
+		
+		// Find element with 'a' tag and specified title and hover to it
 		WebElement hover = driver.findElement(By.xpath("//a[@title='View my shopping cart']"));
 		action.moveToElement(hover).build().perform();
+		
+		// Find element with 'a' tag and specified title and click it
 		driver.findElement(By.xpath("//a[@title='Check out']")).click();
 
 		List<WebElement> checkout = driver.findElements(By.xpath("//a[@title='Proceed to checkout']"));
 		checkout.get(1).click();
 		driver.findElement(By.name("processAddress")).click();
 		
+		// Check box
 		WebElement clickbox = driver.findElement(By.id("cgv"));
 		if (!clickbox.isSelected()) {
 			clickbox.click();
@@ -55,11 +60,13 @@ public class SeleniumTest {
 		driver.findElement(By.name("processCarrier")).click();
 		driver.findElement(By.xpath("//a[@title='Pay by check.']")).click();
 		
+		// Find element with 'span' tag that is child of a button with text 'I confirm my order'
 		driver.findElement(By.xpath("//button/span[. = 'I confirm my order']")).click();
 		
 	}
 	
 	public static void buildCart(WebDriver driver) {
+		// Find all elements with given class
 		List<WebElement> addtocarts = driver.findElements(By.className("ajax_add_to_cart_button"));
 		for (WebElement each: addtocarts) {
 			WebElement element = each.findElement(By.xpath(".//../.."));
@@ -86,12 +93,14 @@ public class SeleniumTest {
 		passwd.sendKeys(password);
 		
 		driver.findElement(By.id("SubmitLogin")).click();
+		// Find child of element with id 'header_logo' that is an img
 		driver.findElement(By.id("header_logo")).findElement(By.xpath(".//img")).click();
 	}
 	
 	
 	public static void createAccount(WebDriver driver) {
 		driver.get("http://automationpractice.com/index.php");
+		// Finds first element with 'login' class
 		WebElement signin = driver.findElement(By.className("login"));
 		signin.click();
 		
@@ -193,9 +202,7 @@ public class SeleniumTest {
 		loginField.sendKeys(username);
 		passwordField.sendKeys(password);
 		
-		loginField.submit();
-//		driver.quit();
-		
+		loginField.submit();		
 	}
 
 }
