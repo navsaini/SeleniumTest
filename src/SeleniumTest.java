@@ -17,6 +17,8 @@ public class SeleniumTest {
 		WebDriver driver;
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
+		loginToCanvas(driver, "ns24766", "#Nav1996");
 	}
 	
 	public static void loginToGmail(WebDriver driver, String username, String password) {
@@ -69,7 +71,7 @@ public class SeleniumTest {
 			}
 		}
 
-		driver.findElement(By.className("cross")).click();
+//		driver.findElement(By.className("cross")).click();
 	}
 	
 	public static void signIn(WebDriver driver, String username, String password) {
@@ -192,7 +194,7 @@ public class SeleniumTest {
 		passwordField.sendKeys(password);
 		
 		loginField.submit();
-		driver.quit();
+//		driver.quit();
 		
 	}
 
