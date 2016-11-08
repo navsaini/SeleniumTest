@@ -7,12 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-@SuppressWarnings("unused")
 public class SeleniumTest {
 
 	public static void main(String[] args) {
@@ -22,9 +18,22 @@ public class SeleniumTest {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
-		signIn(driver, "nav1996@gmail.com", "nav1996");
-		buildCart(driver);
-		checkout(driver);
+		loginToGmail(driver, "nsaini@utexas.edu", "#PattRocks1");
+	}
+	
+	public static void loginToGmail(WebDriver driver, String username, String password) {
+		driver.get("http://gmail.com");
+		
+		WebElement emailElement = driver.findElement(By.id("Email"));
+		emailElement.sendKeys(username);
+		emailElement.submit();
+		
+		WebElement passwordElement = driver.findElement(By.id("Passwd"));
+		passwordElement.sendKeys(password);
+		passwordElement.submit();
+		
+		WebElement firstEmail = driver.findElement(By.id(":37"));
+		firstEmail.click();
 	}
 	
 	public static void checkout(WebDriver driver) {
@@ -33,9 +42,19 @@ public class SeleniumTest {
 		action.moveToElement(hover).build().perform();
 		driver.findElement(By.xpath("//a[@title='Check out']")).click();
 
-		WebElement checkout = driver.findElement(By.xpath("//a[@title='Proceed to checkout']"));
-		System.out.println(checkout.findElement(By.xpath(".//span")).getText());
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkout);
+		List<WebElement> checkout = driver.findElements(By.xpath("//a[@title='Proceed to checkout']"));
+		checkout.get(1).click();
+		driver.findElement(By.name("processAddress")).click();
+		
+		WebElement clickbox = driver.findElement(By.id("cgv"));
+		if (!clickbox.isSelected()) {
+			clickbox.click();
+		}
+		
+		driver.findElement(By.name("processCarrier")).click();
+		driver.findElement(By.xpath("//a[@title='Pay by check.']")).click();
+		
+		driver.findElement(By.xpath("//button/span[. = 'I confirm my order']")).click();
 		
 	}
 	
