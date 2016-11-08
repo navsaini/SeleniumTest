@@ -2,11 +2,11 @@
 Some example flows using Selenium
 
 ## 1. Building a cart and checking out
-![alt text](http://imgur.com/UEXAK.gifv "Shopping website")
+![](http://imgur.com/UEXAK.gif "Shopping website")
 
 ## 2. Creating an account
-![alt text](http://imgur.com/weBBOuT.gifv "Account creation")
+![](http://imgur.com/weBBOuT.gif "Account creation")
 
 ## 3. Logging in 
-![alt text](http://i.imgur.com/eXuboDv.gifv "Login")
+![](http://i.imgur.com/eXuboDv.gif "Login")
 
