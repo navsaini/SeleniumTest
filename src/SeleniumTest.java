@@ -17,8 +17,6 @@ public class SeleniumTest {
 		WebDriver driver;
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		
-		loginToGmail(driver, "nsaini@utexas.edu", "#PattRocks1");
 	}
 	
 	public static void loginToGmail(WebDriver driver, String username, String password) {
